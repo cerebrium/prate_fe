@@ -1,10 +1,9 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
+	import store from '../store.js';
 
 	let input_string = '';
-	let messages = [{ id: Math.random() * 100000, message: 'there is a message here' }];
 
-	let conn;
 	let dis = 'flex';
 
 	function handle_blur() {
@@ -12,61 +11,51 @@
 		console.log('this function is running');
 	}
 
-	function send_message() {
-		messages.push({ id: Math.random() * 100000, message: input_string });
-		messages = messages;
-		input_string = '';
+	let my_messages: string[] = [];
 
-		//conn.send(input_string);
+	function onSendMessage() {
+		store.sendMessage(input_string);
+		my_messages.push(input_string);
+		my_messages = my_messages;
+		input_string = '';
 	}
+	/* eslint-disable @typescript-eslint/no-explicit-any */
+	let messages: any = [];
 
 	onMount(() => {
-		try {
-			/*
-			const connection = new WebSocket('ws://localhost:3000', 'utf-8');
-
-			const enc = new TextEncoder();
-			connection.send(enc.encode('hello'));
-
-
-			connection.addEventListener('message', (message) => {
-				input_string = message.toString();
-				console.log('incoming message from server: ', message);
-			});
-
-			return () => {
-				connection.close();
-			};
-      */
-		} catch (e) {
-			console.log('there was and error: ', e);
-		}
+		store.subscribe((currentMessage) => {
+			console.log('recieving the current message: ', currentMessage);
+			messages = [...messages, currentMessage];
+		});
 	});
 </script>
 
-<div class="main-container" style="display: {dis}">
-	<div class="sidebar-container">Sidebar</div>
+<form on:submit={onSendMessage} class="main-container" style="display: {dis}">
 	<div class="texts-and-inputs-container">
 		<div class="text-container" on:blur={handle_blur}>
 			<div class="client-messages">
-				{#each messages as message}
-					<p id={message.id.toString()}>{message.message}</p>
+				client messages
+				<hr />
+				{#each my_messages as message}
+					<p>{message}</p>
 				{/each}
 			</div>
 			<div class="user-messages">
+				group messages
+				<hr />
 				{#each messages as message}
-					<p id={(message.id + 100000).toString()}>{message.message}</p>
+					<p>{message}</p>
 				{/each}
 			</div>
 		</div>
 		<div class="inputs-container">
-			<textarea class="text-box" bind:value={input_string} />
+			<input type="text" class="text-box" bind:value={input_string} />
 			<div class="button-container">
-				<button on:click={send_message}>Submit Message</button>
+				<input type="submit" value="Submit Message" class="input-achino" />
 			</div>
 		</div>
 	</div>
-</div>
+</form>
 
 <style>
 	.main-container {
@@ -85,11 +74,35 @@
 		padding: 10px;
 	}
 
+	/*
 	.sidebar-container {
 		width: 150px;
 		border-right: 1px solid lightslategrey;
 		box-shadow: lightslategrey 1px 1px 6px;
 		border-radius: 5px;
+	}
+  */
+
+	/* width */
+	::-webkit-scrollbar {
+		width: 5px;
+
+		background: black;
+	}
+
+	/* Track */
+	::-webkit-scrollbar-track {
+		background: black;
+	}
+
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+		background: grey;
+	}
+
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+		background: black;
 	}
 
 	.text-container {
@@ -123,7 +136,7 @@
 		color: darkseagreen;
 	}
 
-	button {
+	.input-achino {
 		width: 90px;
 		height: 40px;
 		border-radius: 0.5rem;
