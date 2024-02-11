@@ -2,14 +2,12 @@
 	import { onMount } from 'svelte';
 	import store from '../store.js';
 
+	import { DarkMode, Textarea, P, Alert, ToolbarButton, Navbar, NavBrand } from 'flowbite-svelte';
+	import { ImageOutline, FaceGrinOutline, PapperPlaneOutline } from 'flowbite-svelte-icons';
+
 	let input_string = '';
-
-	let dis = 'flex';
-
-	function handle_blur() {
-		dis = 'none';
-		console.log('this function is running');
-	}
+	let btnClass =
+		'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-xl p-2';
 
 	let my_messages: string[] = [];
 
@@ -19,6 +17,7 @@
 		my_messages = my_messages;
 		input_string = '';
 	}
+
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	let messages: any = [];
 
@@ -30,130 +29,102 @@
 	});
 </script>
 
-<form on:submit={onSendMessage} class="main-container" style="display: {dis}">
-	<div class="texts-and-inputs-container">
-		<div class="text-container" on:blur={handle_blur}>
-			<div class="client-messages">
-				client messages
-				<hr />
-				{#each my_messages as message}
-					<p>{message}</p>
-				{/each}
-			</div>
-			<div class="user-messages">
-				group messages
-				<hr />
-				{#each messages as message}
-					<p>{message}</p>
-				{/each}
-			</div>
+<form on:submit={onSendMessage} class="main-form">
+	<Navbar>
+		<NavBrand href="/">
+			<img src="/bottleWhite.svg" class="top-left me-3 h-6 sm:h-9" alt="Prate Logo" />
+		</NavBrand>
+		<div class="top-right flex items-center md:order-2">
+			<DarkMode {btnClass} />
 		</div>
-		<div class="inputs-container">
-			<input type="text" class="text-box" bind:value={input_string} />
-			<div class="button-container">
-				<input type="submit" value="Submit Message" class="input-achino" />
-			</div>
+	</Navbar>
+
+	<div class="main-body">
+		<div class="upper-left">
+			<P>User</P>
+			<hr />
+			{#each my_messages as message}
+				<P class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+					{message}
+				</P>
+			{/each}
 		</div>
+
+		<div class="upper-right">
+			<P>Client</P>
+			<hr />
+			{#each messages as message}
+				<P class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+					{message}
+				</P>
+			{/each}
+		</div>
+	</div>
+	<div class="bottom-text-submit">
+		<label for="chat" class="sr-only">Your message</label>
+		<Alert color="dark" class="px-3 py-2">
+			<svelte:fragment slot="icon">
+				<ToolbarButton color="dark" class="text-gray-500 dark:text-gray-400">
+					<ImageOutline class="h-5 w-5" />
+					<span class="sr-only">Upload image</span>
+				</ToolbarButton>
+				<ToolbarButton color="dark" class="text-gray-500 dark:text-gray-400">
+					<FaceGrinOutline class="h-5 w-5" />
+					<span class="sr-only">Add emoji</span>
+				</ToolbarButton>
+				<Textarea
+					id="chat"
+					class="mx-4"
+					rows="1"
+					placeholder="Your message..."
+					bind:value={input_string}
+				/>
+				<ToolbarButton
+					type="submit"
+					color="blue"
+					class="rounded-full text-primary-600 dark:text-primary-500"
+				>
+					<PapperPlaneOutline class="h-5 w-5 rotate-45" on:click={onSendMessage} />
+					<span class="sr-only">Send message</span>
+				</ToolbarButton>
+			</svelte:fragment>
+		</Alert>
 	</div>
 </form>
 
 <style>
-	.main-container {
+	.main-form {
 		position: absolute;
 		left: 0;
 		top: 0;
 		height: 100vh;
 		width: 100vw;
-		background-color: black;
-	}
+		overflow: hidden;
 
-	.texts-and-inputs-container {
-		width: 100%;
 		display: flex;
 		flex-direction: column;
-		padding: 10px;
 	}
-
-	/*
-	.sidebar-container {
-		width: 150px;
-		border-right: 1px solid lightslategrey;
-		box-shadow: lightslategrey 1px 1px 6px;
-		border-radius: 5px;
-	}
-  */
-
-	/* width */
-	::-webkit-scrollbar {
-		width: 5px;
-
-		background: black;
-	}
-
-	/* Track */
-	::-webkit-scrollbar-track {
-		background: black;
-	}
-
-	/* Handle */
-	::-webkit-scrollbar-thumb {
-		background: grey;
-	}
-
-	/* Handle on hover */
-	::-webkit-scrollbar-thumb:hover {
-		background: black;
-	}
-
-	.text-container {
-		display: flex;
+	.main-body {
+		display: grid;
+		grid-template-areas:
+			'upper-left upper-right'
+			'bottom-text-submit bottom-text-submit';
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr 1fr;
 		height: 100%;
-		overflow: scroll;
-		margin-bottom: 35px;
+		width: 100%;
 	}
 
-	.client-messages {
-		padding: 10px;
-		width: 50%;
-		color: darksalmon;
+	.upper-left {
+		grid-area: upper-left;
+		padding: 1rem;
+	}
+	.upper-right {
+		padding: 1rem;
+		grid-area: upper-right;
 	}
 
-	.user-messages {
-		padding: 10px;
-		text-align: right;
-		width: 50%;
-		color: darkseagreen;
-	}
-
-	.text-box {
-		border-top: 1px solid lightslategrey;
-		box-shadow: lightslategrey 1px 1px 6px;
-		padding: 5px;
-		height: 50px;
-		width: 90%;
-		border-radius: 5px;
-		background-color: black;
-		color: darkseagreen;
-	}
-
-	.input-achino {
-		width: 90px;
-		height: 40px;
-		border-radius: 0.5rem;
-		background-color: blanchedalmond;
-		border: none;
-		box-shadow: blanchedalmond 1px 1px 4px;
-	}
-
-	.inputs-container {
-		display: flex;
-	}
-
-	.button-container {
-		width: 10%;
-		height: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+	.bottom-text-submit {
+		grid-area: bottom-text-submit;
 	}
 </style>
