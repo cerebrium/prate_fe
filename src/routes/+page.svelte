@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import store from '../store.js';
 
-	import { DarkMode, Textarea, P, Alert, ToolbarButton, Navbar, NavBrand } from 'flowbite-svelte';
+	import { DarkMode, Input, P, Alert, ToolbarButton, Navbar, NavBrand } from 'flowbite-svelte';
 	import { ImageOutline, FaceGrinOutline, PapperPlaneOutline } from 'flowbite-svelte-icons';
 
 	let input_string = '';
@@ -72,7 +72,7 @@
 					<FaceGrinOutline class="h-5 w-5" />
 					<span class="sr-only">Add emoji</span>
 				</ToolbarButton>
-				<Textarea
+				<Input
 					id="chat"
 					class="mx-4"
 					rows="1"
