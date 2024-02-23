@@ -7,7 +7,7 @@ const messageStore = writable('');
 let socket: any;
 try {
 	const wsUri =
-		((window.location.protocol == 'https:' && 'wss://') || 'ws://') + '127.0.0.1:8080' + '/ws';
+		((window.location.protocol == 'https:' && 'wss://') || 'ws://') + 'prate.pro:3000' + '/ws';
 	socket = new WebSocket(wsUri);
 } catch (e) {
 	console.log('socket creation error hello: ', e);
