@@ -50,14 +50,12 @@
 			"csp": null
 		},
 		"updater": {
-			"updater": {
-				"active": true,
-				"endpoints": [
-					"https://cdn.crabnebula.app/update/prate/prate/{{target}}-{{arch}}/{{current_version}}"
-				],
-				"dialog": true,
-				"pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEFBOENBMTFCMEI4MjI4QTEKUldTaEtJSUxHNkdNcWhibjVqOUhVaFo5bG5JYm0rczB4cjhoMmFyeThEUnRVOUZDejB2NzVIbS8K"
-			}
+			"active": true,
+			"endpoints": [
+				"https://cdn.crabnebula.app/update/prate/prate/{{target}}-{{arch}}/{{current_version}}"
+			],
+			"dialog": true,
+			"pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEFBOENBMTFCMEI4MjI4QTEKUldTaEtJSUxHNkdNcWhibjVqOUhVaFo5bG5JYm0rczB4cjhoMmFyeThEUnRVOUZDejB2NzVIbS8K"
 		},
 		"windows": [
 			{
