@@ -7,7 +7,7 @@
 	},
 	"package": {
 		"productName": "prate-fe",
-		"version": "0.1.1"
+		"version": "0.1.0"
 	},
 	"tauri": {
 		"allowlist": {
@@ -55,7 +55,7 @@
 				"https://cdn.crabnebula.app/update/prate/prate/{{target}}-{{arch}}/{{current_version}}"
 			],
 			"dialog": true,
-			"pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEZFNDQzN0ZBRTY1REY0QzAKUldUQTlGM20ramRFL2dIeCtPRHBIY0o1TG9DeGU2T2RmZVhWZDBPUU9jNGkyMWxVYkRXcm1ENzAK"
+			"pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEFEQTM3OTFFNjQyMzkwNkUKUldSdWtDTmtIbm1qcmNsNS9pS2h3ajJxcTZTc2ZQcHVudU53MzZ6bDBaRFlMOHhHc21uaDFJeUEK"
 		},
 		"windows": [
 			{
