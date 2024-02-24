@@ -7,7 +7,7 @@
 	},
 	"package": {
 		"productName": "prate-fe",
-		"version": "0.1.0"
+		"version": "0.1.1"
 	},
 	"tauri": {
 		"allowlist": {
@@ -16,7 +16,7 @@
 		"bundle": {
 			"active": true,
 			"category": "DeveloperTool",
-			"copyright": "",
+			"copyright": "Nicholas Shankland",
 			"deb": {
 				"depends": []
 			},
@@ -29,7 +29,7 @@
 				"icons/icon.ico"
 			],
 			"identifier": "com.prate.dev",
-			"longDescription": "",
+			"longDescription": "Chat app that allows for anonymous communication",
 			"macOS": {
 				"entitlements": null,
 				"exceptionDomain": "",
@@ -55,7 +55,7 @@
 				"https://cdn.crabnebula.app/update/prate/prate/{{target}}-{{arch}}/{{current_version}}"
 			],
 			"dialog": true,
-			"pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEFBOENBMTFCMEI4MjI4QTEKUldTaEtJSUxHNkdNcWhibjVqOUhVaFo5bG5JYm0rczB4cjhoMmFyeThEUnRVOUZDejB2NzVIbS8K"
+			"pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEZFNDQzN0ZBRTY1REY0QzAKUldUQTlGM20ramRFL2dIeCtPRHBIY0o1TG9DeGU2T2RmZVhWZDBPUU9jNGkyMWxVYkRXcm1ENzAK"
 		},
 		"windows": [
 			{
