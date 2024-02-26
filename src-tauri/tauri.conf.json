@@ -15,7 +15,7 @@
 		},
 		"bundle": {
 			"active": true,
-			"category": "DeveloperTool",
+			"category": "desktop app",
 			"copyright": "Nicholas Shankland",
 			"deb": {
 				"depends": []
@@ -55,7 +55,7 @@
 				"https://cdn.crabnebula.app/update/prate/prate/{{target}}-{{arch}}/{{current_version}}"
 			],
 			"dialog": true,
-			"pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEFEQTM3OTFFNjQyMzkwNkUKUldSdWtDTmtIbm1qcmNsNS9pS2h3ajJxcTZTc2ZQcHVudU53MzZ6bDBaRFlMOHhHc21uaDFJeUEK"
+			"pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDZGRjk3NzJFNERGRkE3OEQKUldTTnAvOU5MbmY1YjdRMm54SWVCYzk3bWVWek1iRzJsQkJsZGVHbmZQaVgyTlhhM1ZWMkhhQ3UK"
 		},
 		"windows": [
 			{
